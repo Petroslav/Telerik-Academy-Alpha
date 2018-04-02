@@ -15,6 +15,7 @@ public class Player {
 	private int age;
 	
 	public static ArrayList<Player> players = new ArrayList<Player>();
+	public static LinkedList<Player> lPlayers = new LinkedList<Player>();
 	public static HashMap<String, ArrayList<Player>> byTypes = new HashMap<String, ArrayList<Player>>();
 	
 	public Player(String name, String type, int age) {
@@ -63,9 +64,9 @@ public class Player {
 	
 	public static void add(Player pl, int pos) {
 		if(!players.isEmpty() || pos < players.size()) {
-			players.add(pos-1, pl);			
+			lPlayers.add(pos-1, pl);			
 		}else {
-			players.add(pl);
+			lPlayers.add(pl);
 		}
 		if(!byTypes.containsKey(pl.type)) {
 			byTypes.put(pl.type, new ArrayList<Player>());
@@ -75,6 +76,10 @@ public class Player {
 	}
 	
 	public static void rankList(int start, int end) {
+		if(players.size() < lPlayers.size()) {
+			players.clear();
+			players.addAll(lPlayers);
+		}
 		for(int i = start; i < end; i++) {
 			System.out.print(i + ". " + players.get(i-1).toString() + ";");
 		}
