@@ -7,17 +7,17 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-public class Player {
+public class Player2 {
 
 	private String name;
 	private String type;
-	private int age;
+	private String age;
 	
-	public static ArrayList<Player> players = new ArrayList<Player>();
-	public static LinkedList<Player> lPlayers = new LinkedList<Player>();
-	public static HashMap<String, ArrayList<Player>> byTypes = new HashMap<String, ArrayList<Player>>();
+	public static ArrayList<Player2> players = new ArrayList<Player2>();
+	public static LinkedList<Player2> lPlayers = new LinkedList<Player2>();
+	public static HashMap<String, ArrayList<Player2>> byTypes = new HashMap<String, ArrayList<Player2>>();
 	
-	public Player(String name, String type, int age) {
+	public Player2(String name, String type, String age) {
 		this.name = name;
 		this.type = type;
 		this.age = age;
@@ -29,8 +29,9 @@ public class Player {
 	}
 	
 	public static void main(String[] args) throws IOException {
+//		Scanner sc = new Scanner(System.in);
+
 		BufferedReader sc = new BufferedReader(new InputStreamReader(System.in));
-		
 		ArrayList<String> commands = new ArrayList<>();
 		
 		while(true) {
@@ -40,13 +41,14 @@ public class Player {
 			}
 			commands.add(command);
 		}
+		long start = System.currentTimeMillis();
 		sc.close();
 		
 		for(String command : commands) {
 			String[] words = command.split(" ");
 			switch(words[0]){
 				case "add":
-					add(new Player(words[1], words[2], parseInt(words[3])), parseInt(words[4]));
+					add(new Player2(words[1], words[2], words[3]), parseInt(words[4]));
 					break;
 				case "find":
 					find(words[1]);
@@ -55,16 +57,17 @@ public class Player {
 					rankList(parseInt(words[1]), parseInt(words[2]));
 			}
 		}
+		System.out.println(System.currentTimeMillis() - start);
 	}
 	
-	public static void add(Player pl, int pos) {
+	public static void add(Player2 pl, int pos) {
 		if(!lPlayers.isEmpty()) {
 			lPlayers.add(pos-1, pl);			
 		}else {
 			lPlayers.add(pl);
 		}
 		if(!byTypes.containsKey(pl.type)) {
-			byTypes.put(pl.type, new ArrayList<Player>());
+			byTypes.put(pl.type, new ArrayList<Player2>());
 		}
 		byTypes.get(pl.type).add(pl);	
 		System.out.println("Added player " + pl.name + " to position " + pos );
@@ -72,11 +75,15 @@ public class Player {
 	
 	public static void rankList(int start, int end) {
 		if(players.size() < lPlayers.size()) {
-			players.clear();
-			players.addAll(lPlayers);
+			if(players.size() == 0) {
+				players.addAll(lPlayers);
+			}else {
+				players.clear();
+				players.addAll(lPlayers);
+			}
 		}
 		for(int i = start; i < end; i++) {
-			System.out.print(i + ". " + players.get(i-1).toString() + "; ");
+			System.out.print(i + ". " + players.get(i-1).toString() + ";");
 		}
 		System.out.println(end + ". " + players.get(end-1).toString());
 	}
@@ -87,13 +94,14 @@ public class Player {
 			System.out.println();
 			return;
 		}
-		ArrayList<Player> types = byTypes.get(type);
-		Collections.sort(types, new Comparator<Player>() {
+		ArrayList<Player2> types = byTypes.get(type);
+		Collections.sort(types, new Comparator<Player2>() {
 
 			@Override
-			public int compare(Player o1, Player o2) {
+			public int compare(Player2 o1, Player2 o2) {
 				if(o1.name.equals(o2.name)) {
-					return o1.age > o2.age ? -1 :(o1.age < o2.age ? 1 : 0);
+//					return o1.age > o2.age ? -1 :(o1.age < o2.age ? 1 : 0);
+					return -o1.age.compareTo(o2.age);
 				}
 				return o1.name.compareTo(o2.name);
 			}
@@ -109,7 +117,7 @@ public class Player {
 		}
 		System.out.println();
 	}
-
+	
 	public static int parseInt( final String s )
 	{
 	    // Check for a sign.
@@ -128,5 +136,5 @@ public class Player {
 	        num = num*10 + '0' - s.charAt( i++ );
 
 	    return sign * num;
-	} 
+	}
 }
