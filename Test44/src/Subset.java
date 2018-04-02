@@ -29,7 +29,7 @@ public class Subset {
 		Collections.sort(nums);
 		
 		int sum = 0;
-		int index = 0;
+		int index = -1;
 		
 		
 		for(int i = 0; i < nums.size(); i++) {
