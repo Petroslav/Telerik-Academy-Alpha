@@ -31,7 +31,7 @@ public class Player {
 	public static void main(String[] args) throws IOException {
 		BufferedReader sc = new BufferedReader(new InputStreamReader(System.in));
 		ArrayList<String> commands = new ArrayList<>();
-		
+		long start = System.currentTimeMillis();
 		while(true) {
 			String command = sc.readLine();
 			if(command.equals("end")) {
@@ -55,6 +55,8 @@ public class Player {
 					rankList(parseInt(words[1]), parseInt(words[2]));
 			}
 		}
+		
+		System.out.println(System.currentTimeMillis() - start + " ms taken");
 		
 	}
 	

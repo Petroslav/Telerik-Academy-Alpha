@@ -7,9 +7,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.TreeSet;
 
-public class Player {
+public class Player implements Comparable<Player> {
 
 	private String name;
 	private String type;
@@ -17,7 +19,7 @@ public class Player {
 	
 	public static ArrayList<Player> players = new ArrayList<Player>();
 	public static LinkedList<Player> lPlayers = new LinkedList<Player>();
-	public static HashMap<String, ArrayList<Player>> byTypes = new HashMap<String, ArrayList<Player>>();
+	public static HashMap<String, TreeSet<Player>> byTypes = new HashMap<String, TreeSet<Player>>();
 	
 	public Player(String name, String type, int age) {
 		this.name = name;
@@ -67,7 +69,7 @@ public class Player {
 			players.add(pos-1, pl);
 		}
 		if(!byTypes.containsKey(pl.type)) {
-			byTypes.put(pl.type, new ArrayList<Player>());
+			byTypes.put(pl.type, new TreeSet<Player>());
 		}
 		byTypes.get(pl.type).add(pl);	
 		System.out.println("Added player " + pl.name + " to position " + pos );
@@ -86,26 +88,27 @@ public class Player {
 			System.out.println();
 			return;
 		}
-		ArrayList<Player> types = byTypes.get(type);
-		Collections.sort(types, new Comparator<Player>() {
-
-			@Override
-			public int compare(Player o1, Player o2) {
-				if(o1.name.equals(o2.name)) {
-					return o1.age > o2.age ? -1 :(o1.age < o2.age ? 1 : 0);
-				}
-				return o1.name.compareTo(o2.name);
-			}
-			
-		});
+		TreeSet<Player> types = byTypes.get(type);
 		int end = 5;
 		if(types.size() < 5) end = types.size();
-		for(int i = 0; i < end; i++) {
-			System.out.print(types.get(i).toString());
+		int i = 0;
+		Iterator<Player> it = types.iterator();
+		
+		while(i < end) {
+			Player p = it.next();
+			System.out.print(p.toString());
 			if(i < end-1) {
 				System.out.print("; ");
 			}
+			i++;
 		}
+		
+//		for(int i = 0; i < end; i++) {
+//			System.out.print(types.get(i).toString());
+//			if(i < end-1) {
+//				System.out.print("; ");
+//			}
+//		}
 		System.out.println();
 	}
 	
@@ -126,5 +129,21 @@ public class Player {
 	        num = num*10 + '0' - s.charAt( i++ );
 
 	    return sign * num;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public int getAge() {
+		return age;
+	}
+
+	@Override
+	public int compareTo(Player o2) {
+		if(name.equals(o2.name)) {
+			return age > o2.age ? -1 :(age < o2.age ? 1 : 0);
+		}
+		return name.compareTo(o2.name);
 	} 
 }
