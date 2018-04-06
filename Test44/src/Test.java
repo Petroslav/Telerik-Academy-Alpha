@@ -5,5 +5,6 @@ public class Test {
 		int num = 90;
 		System.out.println(num % 10);
 		System.out.println(num / 10);
+		System.out.println(1+800 / 100);
 	}
 }

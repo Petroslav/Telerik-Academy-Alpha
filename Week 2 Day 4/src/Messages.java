@@ -1,17 +1,19 @@
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Scanner;
+import java.util.TreeSet;
 
 public class Messages {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		
-		String message = sc.nextLine();
+		StringBuilder message = new StringBuilder(sc.nextLine());
 		String cipher = sc.nextLine();
 		
+		sc.close();
+		
 		HashMap<String, String> pattern = new HashMap<String, String>();
-		HashSet<String> combos = new HashSet<>();
+		TreeSet<String> combos = new TreeSet<>();
 		
 		for(int i = 0; i < cipher.length(); i++) {
 			String value = "";
@@ -30,7 +32,8 @@ public class Messages {
 			}
 			pattern.put(key, value);
 		}
-//		decipher(pattern, combos, message);
+		
+		decipher(pattern, combos, message);
 		
 		System.out.println(combos.size());
 		for(String combo : combos) {
@@ -38,29 +41,26 @@ public class Messages {
 		}
 	}
 
-	public static void decipher(HashMap<String, String> pattern, HashSet<String> combos, String message) {
-		
+	public static void decipher(HashMap<String, String> pattern, TreeSet<String> combos, StringBuilder message) {
 		if(!hasDigit(message)){
-			combos.add(message);
+			combos.add(message.toString());
 		}
-		
-		for(int start = 0; start < message.length(); start++) {
+		int start = 0;
+		for(int i = start; i < message.length(); i++) {
 			if(!Character.isDigit(message.charAt(start))) {
+				start++;
 				continue;
 			}
-			for(int i = 1; i < message.length(); i++) {
-				String check = message.substring(start, i+1);
-				if(pattern.containsKey(check)) {
-					decipher(pattern, combos, message.replace(check, pattern.get(check)));
-				}
+			String check = message.substring(start, i+1);
+			if(pattern.containsKey(check)) {
+				StringBuilder m2 = new StringBuilder(message);
+				decipher(pattern, combos, m2.replace(start, i+1, pattern.get(check)));
 			}
 		}
-		
-		return;      
 		
 	}
 	
-	public static boolean hasDigit(String s) {
+	public static boolean hasDigit(StringBuilder s) {
 		for(int i = 0; i < s.length(); i++) {
 			if(Character.isDigit(s.charAt(i))) return true;
 		}

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/HomeTest/HomeTest.iml" filepath="$PROJECT_DIR$/HomeTest/HomeTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Telerik-Academy-Alpha.iml" filepath="$PROJECT_DIR$/.idea/Telerik-Academy-Alpha.iml" />
+    </modules>
+  </component>
+</project>

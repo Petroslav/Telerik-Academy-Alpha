@@ -8,7 +8,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.TreeSet;
 
 public class Player implements Comparable<Player> {
@@ -16,15 +15,18 @@ public class Player implements Comparable<Player> {
 	private String name;
 	private String type;
 	private int age;
+	private int pos;
+	
+	public static boolean cheat = false;
 	
 	public static ArrayList<Player> players = new ArrayList<Player>();
-	public static LinkedList<Player> lPlayers = new LinkedList<Player>();
 	public static HashMap<String, TreeSet<Player>> byTypes = new HashMap<String, TreeSet<Player>>();
 	
-	public Player(String name, String type, int age) {
+	public Player(String name, String type, int age, int pos) {
 		this.name = name;
 		this.type = type;
 		this.age = age;
+		this.pos = pos;
 	}
 	
 	@Override
@@ -36,37 +38,60 @@ public class Player implements Comparable<Player> {
 		BufferedReader sc = new BufferedReader(new InputStreamReader(System.in));
 		ArrayList<String> commands = new ArrayList<>();
 		
+		
 		while(true) {
 			String command = sc.readLine();
+			if(cheat) {
+				if(command.contains("ranklist")) {
+					cheat = false;
+				}
+			}
+			String[] words = command.split(" ");
+			switch(words[0]){
+			case "add":
+				int pos = parseInt(words[4]);
+				add(new Player(words[1], words[2], parseInt(words[3]), pos), pos);
+				break;
+			case "find":
+				find(words[1]);
+				break;
+			case "ranklist":
+				rankList(parseInt(words[1]), parseInt(words[2]));
+			}
 			if(command.equals("end")) {
+				sc.close();
 				break;
 			}
 			commands.add(command);
 		}
 		
-		sc.close();
 		
-		for(String command : commands) {
-			String[] words = command.split(" ");
-			switch(words[0]){
-				case "add":
-					add(new Player(words[1], words[2], parseInt(words[3])), parseInt(words[4]));
-					break;
-				case "find":
-					find(words[1]);
-					break;
-				case "ranklist":
-					rankList(parseInt(words[1]), parseInt(words[2]));
-			}
-		}
+//		for(String command : commands) {
+//			String[] words = command.split(" ");
+//			switch(words[0]){
+//				case "add":
+//					int pos = parseInt(words[4]);
+//					add(new Player(words[1], words[2], parseInt(words[3]), pos), pos);
+//					break;
+//				case "find":
+//					find(words[1]);
+//					break;
+//				case "ranklist":
+//					rankList(parseInt(words[1]), parseInt(words[2]));
+//			}
+//		}
 		
 	}
 	
 	public static void add(Player pl, int pos) {
-		if(pos > players.size()) {
+		if(cheat) {
 			players.add(pl);
 		}else {
-			players.add(pos-1, pl);
+			if(pos > players.size()) {
+				players.add(pl);
+			}else {
+				players.add(pos-1, pl);
+			}			
 		}
 		if(!byTypes.containsKey(pl.type)) {
 			byTypes.put(pl.type, new TreeSet<Player>());
@@ -76,6 +101,17 @@ public class Player implements Comparable<Player> {
 	}
 	
 	public static void rankList(int start, int end) {
+//		for(Player p : players) {
+//			System.out.println(p.toString() + "pos: " + p.pos);
+//		}
+		Collections.sort(players, new Comparator<Player>() {
+
+			@Override
+			public int compare(Player arg0, Player arg1) {
+				return arg0.pos - arg1.pos;
+			}
+			
+		});
 		for(int i = start; i < end; i++) {
 			System.out.print(i + ". " + players.get(i-1).toString() + ";");
 		}
@@ -102,13 +138,6 @@ public class Player implements Comparable<Player> {
 			}
 			i++;
 		}
-		
-//		for(int i = 0; i < end; i++) {
-//			System.out.print(types.get(i).toString());
-//			if(i < end-1) {
-//				System.out.print("; ");
-//			}
-//		}
 		System.out.println();
 	}
 	
@@ -129,14 +158,6 @@ public class Player implements Comparable<Player> {
 	        num = num*10 + '0' - s.charAt( i++ );
 
 	    return sign * num;
-	}
-	
-	public String getName() {
-		return name;
-	}
-	
-	public int getAge() {
-		return age;
 	}
 
 	@Override
