@@ -9,7 +9,8 @@ public class Sudoku {
 	
 	public static void main(String[] args) {
 		InputReader sc = new InputReader();
-		
+		var s = 3;
+		System.out.println(s);
 		for(int i = 0; i < 9; i++) {
 			sudoku.add(new ArrayList<Integer>());
 			for(int j = 0; j < 9; j++) {
@@ -17,9 +18,9 @@ public class Sudoku {
 				sudoku.get(i).add(num);				
 			}
 		}
-		
+
 		solveSudoku(0, 0);
-		
+
 		for(ArrayList<Integer> list : sudoku) {
 			for(int n : list) {
 				System.out.print(n);
@@ -97,9 +98,7 @@ public class Sudoku {
 			}
 		}
 		return nums;
-	}
-	
-	
+	}	
 	
 	static class InputReader {
 	       private InputStream stream;
