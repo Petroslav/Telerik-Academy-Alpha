@@ -5,7 +5,7 @@ import java.util.List;
 public class Permutations {
 
 	public static void main(String[] args) {
-		int n = 4;
+		int n = 6;
 		ArrayList<Integer> list = new ArrayList<Integer>();
 		for(int i = 1; i < n+1; i++) {
 			list.add(i);
