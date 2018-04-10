@@ -9,7 +9,6 @@ public class Sudoku {
 	
 	public static void main(String[] args) {
 		InputReader sc = new InputReader();
-		var s = 3;
 		System.out.println(s);
 		for(int i = 0; i < 9; i++) {
 			sudoku.add(new ArrayList<Integer>());
