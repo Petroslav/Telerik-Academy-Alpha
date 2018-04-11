@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6ce656d8-405f-40e5-9e0f-4839e80e205e" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/Test44/src/BitShift.java" beforeDir="false" afterPath="$PROJECT_DIR$/Test44/src/BitShift.java" afterDir="false" />
-    </list>
+    <list default="true" id="6ce656d8-405f-40e5-9e0f-4839e80e205e" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,8 +15,8 @@
       <file leaf-file-name="BitShift.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Test44/src/BitShift.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="13" column="36" lean-forward="true" selection-start-line="13" selection-start-column="36" selection-end-line="13" selection-end-column="36" />
+            <state relative-caret-position="187">
+              <caret line="11" column="22" lean-forward="true" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -397,8 +395,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Test44/src/BitShift.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="36" lean-forward="true" selection-start-line="13" selection-start-column="36" selection-end-line="13" selection-end-column="36" />
+        <state relative-caret-position="187">
+          <caret line="11" column="22" lean-forward="true" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
         </state>
       </provider>
     </entry>
