@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/HomeTest/HomeTest.iml" filepath="$PROJECT_DIR$/HomeTest/HomeTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/Telerik-Academy-Alpha.iml" filepath="$PROJECT_DIR$/.idea/Telerik-Academy-Alpha.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Arrays and ArrayList/Arrays and ArrayList.iml" filepath="$PROJECT_DIR$/Arrays and ArrayList/Arrays and ArrayList.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Practice 1/Practice 1.iml" filepath="$PROJECT_DIR$/Practice 1/Practice 1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Test44/Test44.iml" filepath="$PROJECT_DIR$/Test44/Test44.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Week 2 Day 1/Week 2 Day 1.iml" filepath="$PROJECT_DIR$/Week 2 Day 1/Week 2 Day 1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Week 2 Day 3/Week 2 Day 3.iml" filepath="$PROJECT_DIR$/Week 2 Day 3/Week 2 Day 3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Week 2 Day 4/Week 2 Day 4.iml" filepath="$PROJECT_DIR$/Week 2 Day 4/Week 2 Day 4.iml" />
     </modules>
   </component>
 </project>
