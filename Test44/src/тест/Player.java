@@ -1,4 +1,4 @@
-package С‚РµСЃС‚;
+package тест;
 
 import java.io.BufferedReader;
 import java.io.IOException;
