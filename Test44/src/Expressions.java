@@ -18,6 +18,7 @@ public class Expressions {
 		
 		for(String line : expressions) {
 			int sum = (int) computeAnother(line);
+			System.out.println(line + " = " + sum);
 			if(sum == target) {
 				count++;
 			}
